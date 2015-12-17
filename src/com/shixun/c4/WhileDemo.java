@@ -12,8 +12,8 @@ public class WhileDemo {
         String name = "abc";
         String pwd = "456";
         Scanner scanner = new Scanner(System.in);
-        String userName = "";
-        String password = "";
+        String userName = " ";
+        String password = " ";
         int i = 0;//循环的条件
         while(!userName.equals(name)
                 || !password.equals(pwd)

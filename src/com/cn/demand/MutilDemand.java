@@ -15,7 +15,7 @@ public class MutilDemand {
     private static String [] passwords = new String[size];
     //钱
     private static int [] money = new int[size];
-    //sdf
+    //添加注释
     /**
      * 注册操作
      * @param name 注册的用户名

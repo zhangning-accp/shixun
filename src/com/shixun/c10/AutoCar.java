@@ -13,20 +13,20 @@ public class AutoCar extends Car{
     public void run(int a) {
 
     }
-    public void run() {
-        super.run();
-        System.out.println("奥拓车预热5秒");
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("预热完成，奥拓车启动了....");
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("10秒后达到100km");
-    }
+//    public void run() {
+//        super.run();
+//        System.out.println("奥拓车预热5秒");
+//        try {
+//            Thread.sleep(5000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("预热完成，奥拓车启动了....");
+//        try {
+//            Thread.sleep(10000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("10秒后达到100km");
+//    }
 }

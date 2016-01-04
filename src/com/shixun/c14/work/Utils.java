@@ -17,7 +17,7 @@ public class Utils {
      * @return 如果str为null或空值或多个空格符，否返回为true，否则返回为false
      */
     public static boolean isBlank(String str) {
-
+        return false;
     }
 
     /**
@@ -38,7 +38,7 @@ public class Utils {
      * @return
      */
     public static boolean isBoolean(String str) {
-
+        return false;
     }
 
     /**
@@ -48,6 +48,23 @@ public class Utils {
      */
     public static boolean isDigit(String str) {
 
+        if(isDouble(str)) {
+            return false;
+        } else {
+            char[] chars = str.toCharArray();
+            for (int i = 0; i < chars.length; i++) {
+                char pointChar = chars[i];
+                //如果存在点或非数字则返回false.但如果第一个字符是-或+是允许的
+                if((pointChar == '-' || pointChar == '+') && i > 0) {
+                    return false;
+                } else if ((pointChar == '.' || (int) pointChar < 48 || (int) pointChar > 57)) {
+                    return false;
+                } else {
+
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -56,7 +73,27 @@ public class Utils {
      * @return
      */
     public static boolean isDouble(String str) {
-
+        //判断输入的字符串是null或空内容否
+        if(!isBlank(str)) {
+            char [] chars = str.toCharArray();
+            int dotNumber = 0;//.计数器，浮点数只能有一个点，如果超过两个点就是错误的浮点数
+            for(int i = 0; i < chars.length; i ++) {
+                char pointChar = chars[i];
+                if(dotNumber > 1){
+                    return false;
+                }
+                if(pointChar == '.' && i == 0) {//先判断第一个字符是豆点直接返回false
+                    return false;
+                } else if(pointChar == '.' && i > 0) {
+                    dotNumber++;
+                } else if((int)pointChar < 48 || (int)pointChar > 57) {//如果是非0-9的数字，则返回false
+                    return false;
+                }
+            }
+        } else {
+            return false;
+        }
+        return true;//返回真
     }
 
     /**
@@ -65,6 +102,8 @@ public class Utils {
      * @return
      */
     public static boolean isEmail(String str){
-
+        return false;
     }
+
+
 }

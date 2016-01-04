@@ -17,6 +17,9 @@ public class Utils {
      * @return 如果str为null或空值或多个空格符，否返回为true，否则返回为false
      */
     public static boolean isBlank(String str) {
+        if(str == null || str.trim().equals("")) {
+            return true;
+        }
         return false;
     }
 
@@ -38,7 +41,20 @@ public class Utils {
      * @return
      */
     public static boolean isBoolean(String str) {
-        return false;
+        if(isBlank(str)) {
+            return false;
+        }
+        str = str.trim();
+        str = str.toLowerCase();//转成全小写
+        if(isBlank(str)) {
+            return false;
+        }
+        //以下也可以使用switch来进行处理，但由于1.7才支持String，所以要在方法上说明支持的jdk版本。切记
+        if(str.equals("yes") || str.equals("true") || str.equals("1")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -47,28 +63,28 @@ public class Utils {
      * @return
      */
     public static boolean isDigit(String str) {
-
-        if(isDouble(str)) {
-            return false;
-        } else {
+        //判断输入的字符串是null或空内容否
+        if (!isBlank(str)) {
             char[] chars = str.toCharArray();
             for (int i = 0; i < chars.length; i++) {
                 char pointChar = chars[i];
-                //如果存在点或非数字则返回false.但如果第一个字符是-或+是允许的
-                if((pointChar == '-' || pointChar == '+') && i > 0) {
+                if (pointChar == '.') {
                     return false;
-                } else if ((pointChar == '.' || (int) pointChar < 48 || (int) pointChar > 57)) {
+                } else if ((pointChar == '-' && i > 0) || pointChar == '+' && i > 0) {//判断如果在数字
                     return false;
-                } else {
-
+                } else if (((int) pointChar < 48 || (int) pointChar > 57)
+                        && (pointChar != '-' && pointChar != '+')) {//如果是非0-9的数字，则返回false
+                    return false;
                 }
             }
+        } else {
+            return false;
         }
-        return false;
+        return true;//返回真
     }
 
     /**
-     * 判断是否是浮点数
+     * 判断是否是浮点数,包括正负数
      * @param str
      * @return
      */
@@ -84,9 +100,16 @@ public class Utils {
                 }
                 if(pointChar == '.' && i == 0) {//先判断第一个字符是豆点直接返回false
                     return false;
+                } else if(pointChar == '.' && (i == chars.length - 1)) {
+                    //主要判断最后一个是豆点的情况，如"2."，这样也是个非法的浮点数，否则就会是正确的浮点数
+                    return false;
+                } else if((pointChar == '-' && i > 0) || pointChar == '+' && i > 0) {//判断如果在数字
+                    return false;
                 } else if(pointChar == '.' && i > 0) {
                     dotNumber++;
-                } else if((int)pointChar < 48 || (int)pointChar > 57) {//如果是非0-9的数字，则返回false
+                } else if(((int)pointChar < 48 || (int)pointChar > 57)
+                        && (pointChar != '-' && pointChar != '+')) {//如果是非0-9的数字，则返回false
+
                     return false;
                 }
             }

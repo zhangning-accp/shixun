@@ -18,7 +18,7 @@ public class User {
     //电子邮件
     private String email;
     //充值卡集合
-    private Account [] accounts = new Account[2];
+    private ZNList accounts = new ZNList();
 
     private int point = 0;//一个在数组里移动的指针，用于确定当前数组可添加元素的位置
 
@@ -62,27 +62,16 @@ public class User {
         this.email = email;
     }
 
-    public Account[] getAccounts() {
+    public ZNList getAccounts() {
         return accounts;
     }
 
     /**
-     * 添加充值卡
+     * 添加充值卡,这里单独提供一个add方法，主要是便于使用。对于方法的调用则来说，
+     * 它只关心将充值卡添加到User对象即可，而无需关心是怎么加以及用什么加。
      * @param account
      */
     public void addAccount(Account account) {
-        if(point <= accounts.length -1) {
-            accounts[point] = account;
-            point ++;
-        } else {
-            //如果当前的point点位于最后的位置，表示数组已满，此时需要扩充数组长度，扩充按原长度+原长度/2
-            Account [] tmp = accounts;
-            accounts = new Account[accounts.length + (accounts.length / 2)];
-            for(int i = 0; i < tmp.length; i ++) {
-                accounts[i] = tmp[i];
-                point = i + 1;
-            }
-        }
+        accounts.add(account);
     }
-
 }

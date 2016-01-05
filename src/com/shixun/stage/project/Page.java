@@ -75,14 +75,14 @@ public class Page<E> {
      * 下一页数据
      */
     public void next() {
-
+        //调用jump即可，注意当前页面的问题。要注意控制页码超出或为-1等非正常值的处理
     }
 
     /**
      * 上一页数据
      */
     public void prev() {
-
+        //调用jump即可，注意当前页面的问题。要注意控制页码超出或为-1等非正常值的处理
     }
 
     /**
@@ -90,8 +90,19 @@ public class Page<E> {
      * @param page
      */
     public void jump(int page) {
-
+        //设置当前页为page
+        currentPage = page;
+        //分页算法：
+        //计算开始索引。请自己推理开始和结束索引的计算公式
+        int start = 0;
+        //计算结束索引
+        int end = 0;
+        //利用开始和结束索引将数据从list提炼出来，并添加到pageDatas
+        this.pageDatas.clear();
+        for(int i = start; i < end; i ++) {
+            pageDatas.add(list.get(i));
+        }
+        //计算是否到达最后一页，如果是则设置isLast的值，如果是跳到第一页则设置isFirst的值。对于翻页的基本要求是。
+        //
     }
-
-
 }

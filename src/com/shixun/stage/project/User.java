@@ -24,14 +24,12 @@ public class User {
     private List<UserCard> cards = new ArrayList<UserCard>();
     //点播日志(消费日志)
     private List<DemandLogger> demandLoggers = new ArrayList<DemandLogger>();
+    private Item currentItem;//当前用户点播的内容对象
 
     /**
      * 当前用户使用的充值卡
      */
     private UserCard currentCard = null;
-
-
-    private int point = 0;//一个在数组里移动的指针，用于确定当前数组可添加元素的位置
 
     public String getName() {
         return name;

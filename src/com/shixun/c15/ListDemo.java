@@ -12,7 +12,7 @@ public class ListDemo {
 
 
     public static void main(String [] args) {
-        List<String> list = new LinkedList();//ArrayList是顺序存放数据
+        List<String> list = new ArrayList();//ArrayList是顺序存放数据
 
         for (int i = 0; i < 5; i++) {
            list.add(1+"");

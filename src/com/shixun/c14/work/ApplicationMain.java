@@ -42,7 +42,7 @@ public class ApplicationMain {
 
     public void run() {
         Scanner scanner = new Scanner(System.in);
-        String menu = "1.登录    2.查询余额    3.修改密码    4.充值    5.点播    6.退出     7.填写详细资料    8.查看点播日志(扩展)";
+        String menu = "1. 注册    2.登录    3.查询余额    4.修改密码    5.充值    6.点播    7.点播记录  8.退出     7.填写详细资料    8.查看点播日志(扩展)";
         com.cn.demand.oo.User user = new com.cn.demand.oo.User();
         String itemName;//点播的项目名
         int price;//单次点播金额

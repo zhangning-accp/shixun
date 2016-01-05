@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * Created by zn on 2016/1/5.
- * 分页用
+ * 分页用的数据对象封装
  */
 public class Page<E> {
     //总数据

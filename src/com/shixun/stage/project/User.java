@@ -5,10 +5,11 @@ import java.util.List;
 
 /**
  * Created by zn on 2016/1/5.
+ * 用户对象
  */
 public class User {
     //用户id
-    private String id;
+    private long id;
     //用户姓名
     private String name;
     //身份证

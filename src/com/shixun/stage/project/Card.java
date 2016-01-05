@@ -7,6 +7,7 @@ import java.util.Date;
  * 具体卡对象
  */
 public class Card {
+    private long id;
     /**
      * 卡类型
      */

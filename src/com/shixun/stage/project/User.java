@@ -80,7 +80,7 @@ public class User {
      * 它只关心将充值卡添加到User对象即可，而无需关心是怎么加以及用什么加。
      * @param card
      */
-    public void addAccount(UserCard card) {
+    public void addUserCard(UserCard card) {
         cards.add(card);
     }
 

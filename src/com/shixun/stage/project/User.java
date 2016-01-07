@@ -1,6 +1,7 @@
 package com.shixun.stage.project;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,6 +25,7 @@ public class User {
     private List<UserCard> cards = new ArrayList<UserCard>();
     //点播日志(消费日志)
     private List<DemandLogger> demandLoggers = new ArrayList<DemandLogger>();
+
     private Item currentItem;//当前用户点播的内容对象
 
     /**
@@ -71,9 +73,24 @@ public class User {
         this.email = email;
     }
 
-    public List<UserCard> getAccounts() {
+    public List<UserCard> getCards() {
         return cards;
     }
+
+    /**
+//     * 返回卡的张数
+//     * @return
+//     */
+//    public int cardCount() {
+//        return cards.size();
+//    }
+//    public UserCard findCard(CardTypeEnum type) {
+//
+//    }
+//    public UserCard findCard(int index) {
+//
+//    }
+
 
     /**
      * 添加充值卡,这里单独提供一个add方法，主要是便于使用。对于方法的调用者来说，
@@ -84,10 +101,10 @@ public class User {
         cards.add(card);
     }
 
-
-    public List<DemandLogger> getDemandLogger() {
+    public List<DemandLogger> getDemandLoggers() {
         return demandLoggers;
     }
+
     public void addDemandLogger(DemandLogger logger) {
         //这里需要根据充值卡类型，按要求，保留对应的日志数据。所以不仅仅是简单的放入集合。需要将过期日志清除。
         demandLoggers.add(logger);

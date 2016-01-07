@@ -16,4 +16,28 @@ public class Card {
      * 价格
      */
     private int price;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public CardTypeEnum getCardType() {
+        return cardType;
+    }
+
+    public void setCardType(CardTypeEnum cardType) {
+        this.cardType = cardType;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 }

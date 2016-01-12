@@ -218,11 +218,11 @@ public class FileUtils {
                         if(f.isDirectory()) {//如果是目录，则在desc下创建一个目录
                             File file = new File(desc.getAbsoluteFile() + "/" + f.getName());
                             file.mkdirs();
-                            copy(f,file);//调用自身，递归
+                            copy(f,file);//调用自身，递归的使用
                         } else {
                         //表示当前file不是目录，则直接拷贝到desc，但由于使用的递归，所以这里的desc可能不是最初传入的
                             //路径，而是在for里递归调用时传入的路径。
-                            copy(f,desc);//调用自身
+                            copy(f,desc);//调用自身，递归的使用
                         }
                     }
                 } else if (src.isFile() && desc.isFile()) {

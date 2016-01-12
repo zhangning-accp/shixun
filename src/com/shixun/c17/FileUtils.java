@@ -1,6 +1,15 @@
 package com.shixun.c17;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -17,7 +26,13 @@ public class FileUtils {
      */
     public static void delete(File file) {
         //1. 判断file是否是目录，如果是则需要进行该目录下是否还有子目录的遍历，直到不是目录，然后进行删除
-
+        if(file.isDirectory()) {
+            File [] files = file.listFiles();
+           for(File f : files) {
+               delete(f);
+           }
+        }
+        file.delete();
     }
 
     /**
@@ -28,7 +43,50 @@ public class FileUtils {
      *              true：一致，false：不一致
      */
     public static boolean compare(File file1, File file2) {
-        return false;
+        if(file1.exists() && file2.exists()) {
+            BufferedReader reader1 = null;
+            BufferedReader reader2 = null;
+            try {
+                reader1 = new BufferedReader(new FileReader(file1));
+                reader2 = new BufferedReader(new FileReader(file2));
+                StringBuffer buffer1 = new StringBuffer();
+                StringBuffer buffer2 = new StringBuffer();
+                String s1 = "";
+                while(s1 != null) {
+                    s1 = reader1.readLine();
+                    buffer1.append(s1);
+                }
+                s1 = "";
+                while(s1 != null) {
+                    s1 = reader2.readLine();
+                    buffer2.append(s1);
+                }
+                if(buffer1.toString().equals(buffer2.toString())) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return false;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
+            } finally {
+                try {
+                    if(reader1 != null) {
+                        reader1.close();
+                    }
+                    if(reader2 != null) {
+                        reader2.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -39,7 +97,49 @@ public class FileUtils {
      * 如果file是一个目录，则统计该目录下所有文件的源码行数(目录下的子目录不处理)
      */
     public static long count(File file) {
-        return 0;
+        long count = 0;
+        if(file.isFile()) {
+            count =  countFileNumber(file);
+        } else {
+            File [] files = file.listFiles();
+            for(File f : files) {
+                if(f.isFile()) {
+                    long c = countFileNumber(f);
+                    count += c;
+                }
+            }
+        }
+        return count;
+    }
+    private static long countFileNumber(File file) {
+        long count = 0;
+        if(file.exists()) {
+            BufferedReader reader1 = null;
+            try {
+                reader1 = new BufferedReader(new FileReader(file));
+                String s1 = "";
+                while(reader1.readLine() != null) {
+                    count ++;
+                }
+                return count;
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return -1;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return -1;
+            } finally {
+                try {
+                    if(reader1 != null) {
+                        reader1.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            return -1;
+        }
     }
 
     /**
@@ -47,8 +147,49 @@ public class FileUtils {
      * @param file 需要统计的file对象
      * @return 返回一个map集合，该集合的key就是字符，value就是字符出现的数量
      */
-    public static Map<String,Integer> countChar(File file) {
-        return null;
+    public static Map<Character,Integer> countChar(File file) {
+        Map<Character,Integer> map = new HashMap();
+        if (file.exists()) {
+            if (file.isDirectory()) {
+                throw new IllegalArgumentException("file类型错误，传入的file不是一个文件，而是一个目录");
+            }
+            BufferedReader reader1 = null;
+            try {
+                reader1 = new BufferedReader(new FileReader(file));
+                StringBuffer buffer1 = new StringBuffer();
+                String s1 = "";
+                while (s1 != null) {
+                    s1 = reader1.readLine();
+                    buffer1.append(s1);
+                }
+                s1 = buffer1.toString();
+                char [] chars = s1.toCharArray();
+                for(char c : chars) {
+                    if(map.containsKey(c)) {
+                        int count = map.get(c);
+                        count ++;
+                        map.put(c,count);
+                    }
+                }
+                return map;
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return null;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            } finally {
+                try {
+                    if (reader1 != null) {
+                        reader1.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -62,7 +203,72 @@ public class FileUtils {
      *             当src是目录是，desc不可以是文件，只能是目录，如果是目录，就需要抛出异常或自定义异常
      */
     public static void copy(File src, File desc) {
+        //表示desc是一个目录
+        if(desc.getName().lastIndexOf(".") == -1) {
+            desc.mkdirs();
+        }
+        //这里用了递归
+        if(src.isDirectory() && desc.isFile()) {
+            throw new IllegalArgumentException("src是一个目录，但desc是一个文件，参数错误");
+        } else {
+            if(src.exists()) {
+                if (src.isDirectory() && desc.isDirectory()) {
+                    File [] files = src.listFiles();
+                    for(File f : files) {
+                        if(f.isDirectory()) {//如果是目录，则在desc下创建一个目录
+                            File file = new File(desc.getAbsoluteFile() + "/" + f.getName());
+                            file.mkdirs();
+                            copy(f,file);//调用自身
+                        } else {
+                        //表示当前file不是目录，则直接拷贝到desc，但由于使用的递归，所以这里的desc可能不是最初传入的
+                            //路径，而是在for里递归调用时传入的路径。
+                            copy(f,desc);//调用自身
+                        }
+                    }
+                } else if (src.isFile() && desc.isFile()) {
+                    copySampleFile(src,desc);
+                } else if (src.isFile() && desc.isDirectory()) {
+                    copySampleFile(src,new File(desc.getAbsoluteFile() + "/" + src.getName()));
+                }
+            }
+        }
+    }
 
+    private static void copySampleFile(File src, File desc) {
+        InputStream in = null;
+        OutputStream out = null;
+        try {
+            in = new FileInputStream(src);
+            out = new FileOutputStream(desc);
+            int context = -1;
+            while((context = in.read()) != -1) {
+                out.write(context);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(in != null) {
+                    in.close();
+                }
+                if(out != null) {
+                    out.close();
+                }
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void main(String [] args) {
+        File src = new File("E:/a");
+        File desc = new File("E:/b");
+        copy(src,desc);
+        delete(desc);
+        System.out.println(src.getName());
+        System.out.println("end...");
     }
 
 }

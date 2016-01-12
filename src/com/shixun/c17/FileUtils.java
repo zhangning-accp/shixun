@@ -29,10 +29,10 @@ public class FileUtils {
         if(file.isDirectory()) {
             File [] files = file.listFiles();
            for(File f : files) {
-               delete(f);
+               delete(f);//调用自身
            }
         }
-        file.delete();
+        file.delete();//删除当前file对象
     }
 
     /**
@@ -43,6 +43,7 @@ public class FileUtils {
      *              true：一致，false：不一致
      */
     public static boolean compare(File file1, File file2) {
+        //判断文件1和文件2是否存在，如果都存在才进行操作，否则返回false
         if(file1.exists() && file2.exists()) {
             BufferedReader reader1 = null;
             BufferedReader reader2 = null;
@@ -55,12 +56,12 @@ public class FileUtils {
                 while(s1 != null) {
                     s1 = reader1.readLine();
                     buffer1.append(s1);
-                }
+                }//文件1内容读取完毕
                 s1 = "";
                 while(s1 != null) {
                     s1 = reader2.readLine();
                     buffer2.append(s1);
-                }
+                }//文件2内容读取完毕
                 if(buffer1.toString().equals(buffer2.toString())) {
                     return true;
                 } else {
@@ -163,12 +164,12 @@ public class FileUtils {
                     buffer1.append(s1);
                 }
                 s1 = buffer1.toString();
-                char [] chars = s1.toCharArray();
+                char [] chars = s1.toCharArray();//获取char数组
                 for(char c : chars) {
-                    if(map.containsKey(c)) {
-                        int count = map.get(c);
+                    if(map.containsKey(c)) {//查看map集合里是否存在此字符记录
+                        int count = map.get(c);//取出此字符记录的count值
                         count ++;
-                        map.put(c,count);
+                        map.put(c,count);//更新count值
                     }
                 }
                 return map;
@@ -207,7 +208,6 @@ public class FileUtils {
         if(desc.getName().lastIndexOf(".") == -1) {
             desc.mkdirs();
         }
-        //这里用了递归
         if(src.isDirectory() && desc.isFile()) {
             throw new IllegalArgumentException("src是一个目录，但desc是一个文件，参数错误");
         } else {
@@ -218,7 +218,7 @@ public class FileUtils {
                         if(f.isDirectory()) {//如果是目录，则在desc下创建一个目录
                             File file = new File(desc.getAbsoluteFile() + "/" + f.getName());
                             file.mkdirs();
-                            copy(f,file);//调用自身
+                            copy(f,file);//调用自身，递归
                         } else {
                         //表示当前file不是目录，则直接拷贝到desc，但由于使用的递归，所以这里的desc可能不是最初传入的
                             //路径，而是在for里递归调用时传入的路径。
@@ -226,8 +226,10 @@ public class FileUtils {
                         }
                     }
                 } else if (src.isFile() && desc.isFile()) {
+                    //文件对文件，覆盖或创建desc文件
                     copySampleFile(src,desc);
                 } else if (src.isFile() && desc.isDirectory()) {
+                    //直接把文件拷贝到desc目录下
                     copySampleFile(src,new File(desc.getAbsoluteFile() + "/" + src.getName()));
                 }
             }
@@ -270,5 +272,4 @@ public class FileUtils {
         System.out.println(src.getName());
         System.out.println("end...");
     }
-
 }

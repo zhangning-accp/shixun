@@ -29,6 +29,7 @@ public class IODemo2 {
 //        }
 
         try {
+
             FileReader in = new FileReader("e:/scanner.txt");
             buffer = new StringBuffer();
             char [] c = new char[1];

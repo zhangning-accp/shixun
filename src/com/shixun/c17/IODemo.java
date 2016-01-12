@@ -41,6 +41,18 @@ public class IODemo {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if(writer != null) {
+                    writer.close();
+                }
+                if(reader != null) {
+                    reader.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
         System.out.println("end......");
     }

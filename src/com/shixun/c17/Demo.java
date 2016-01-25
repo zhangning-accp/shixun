@@ -24,11 +24,11 @@ public class Demo {
         for(String s : cardss) {
             String [] tmp = s.split("-");
             card = new UserCard();
-            card.setId(tmp[0]);
-            card.setCardType(tmp[3]);
+            //card.setId(tmp[0]);
+            //card.setCardType(tmp[3]);
         }
 
-        user.addUserCard();
+        //user.addUserCard();
 
     }
 }

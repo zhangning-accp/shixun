@@ -68,7 +68,7 @@ public class ApplicationMain {
     }
 
     /**
-        管理员
+     管理员
      */
     private void admin() {
 

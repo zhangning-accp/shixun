@@ -12,16 +12,17 @@ public class OutTest extends Thread {
     }
     public void run() {
         while(true) {
-            //synchronized (obj) {
+            synchronized (obj) {
                 try {
                     System.out.print(number + ",");
+                    Thread.sleep(500);
                     obj.notifyAll();
                     obj.wait();
-                   // Thread.sleep(1000);
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            //}
+            }
         }
     }
 }

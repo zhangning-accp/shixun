@@ -7,9 +7,15 @@ public class Test {
 
     public static void main(String [] args) {
         Object object = new Object();
-        for(int i = 0; i < 2; i ++) {
+        for(int i = 0; i < 100; i ++) {
             OutTest te = new OutTest(i,object);
-            te.start();
+
+            try {
+                te.start();
+                te.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 //            try {
 //                te.join();
 //            } catch (InterruptedException e) {

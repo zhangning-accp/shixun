@@ -46,7 +46,6 @@ public class XMLDemo {
                 }
             }
 
-
         } catch (SAXException e) {
             e.printStackTrace();
         } catch (IOException e) {

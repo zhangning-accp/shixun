@@ -29,8 +29,8 @@ public class XmlPractice {
      ]
      }
      */
-    public static void main(String [] args) {
 
+    public static void xml2Json() {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = null;
@@ -72,6 +72,7 @@ public class XmlPractice {
                             } else {
                                 buffer.append("{name:" + type.getAttribute("name") + "}");
                             }
+
                         }
                         buffer.append("]");
                         buffer.append("},");
@@ -91,6 +92,42 @@ public class XmlPractice {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public static void xml2Simple() {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = null;
+            builder = factory.newDocumentBuilder();
+            Document doc = builder.parse("src/com/shixun/c22/phone.xml");
+            //获取根节点
+            Element root = doc.getDocumentElement();
+            System.out.println(root.getTagName());
+            //遍历根节点下的所有子节点
+            NodeList brandList = root.getElementsByTagName("Brand");
+            for(int i = 0; i < brandList.getLength(); i ++) {
+                if(brandList.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                    //获取Barand元素对象
+                    Element barandEle = (Element) brandList.item(i);
+                    //获取barand的子元素
+                    NodeList typeList = barandEle.getElementsByTagName("Type");
+                    for(int j = 0; j < typeList.getLength(); j ++) {
+                        Element type = (Element) typeList.item(j);
+                        System.out.println(barandEle.getTagName() + ":name = "
+                                + barandEle.getAttribute("name") + "," + type.getTagName() + ":name=" + type.getAttribute("name"));
+                    }
+                }
+            }
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void main(String [] args) {
+        xml2Simple();
+
 
     }
 }

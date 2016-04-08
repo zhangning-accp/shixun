@@ -18,6 +18,10 @@ public class DaoServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        IUserDAO dao = new OracleUserDAO();
+        //根据具体的业务情况获取到用户信息或其他,然后执行相关的dao方法
+        //dao.add();
+        //dao.delete();
+        //dao.findAll();
     }
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 
 /**
  * Created by Administrator on 2016/4/8.
+ * OracleUserDao的实现,所有代码未经过单元测试.
  */
 public class OracleUserDAO implements IUserDAO {
     DBUtils db = new DBUtils();

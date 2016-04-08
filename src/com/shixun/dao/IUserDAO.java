@@ -7,7 +7,7 @@ import java.util.List;
  * 针对User实体的DAO接口
  */
 public interface IUserDAO {
-    User findOne(String id);
+    User findOne(long id);
     List<User> findAll();
     boolean delete(User u);
     boolean update(User u);

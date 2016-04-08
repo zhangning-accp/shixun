@@ -14,7 +14,7 @@ public class User {
     private String userEmail;//
     private String userAddress;
     private String userPhone;
-    private String userCconstellation;//星座
+    private String userConstellation;//星座
     private String userImg;//用户头像
     private Date createDatetime;
 
@@ -74,12 +74,12 @@ public class User {
         this.userPhone = userPhone;
     }
 
-    public String getUserCconstellation() {
-        return userCconstellation;
+    public String getUserConstellation() {
+        return userConstellation;
     }
 
-    public void setUserCconstellation(String userCconstellation) {
-        this.userCconstellation = userCconstellation;
+    public void setUserConstellation(String userConstellation) {
+        this.userConstellation = userConstellation;
     }
 
     public String getUserImg() {

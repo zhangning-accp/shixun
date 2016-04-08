@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="shixun:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/shixun_jar</output-path>
+    <root id="archive" name="shixun.jar">
+      <element id="file-copy" path="$PROJECT_DIR$/out/production/shixun/com/shixun/c18/ConstructorDemo.class" />
+      <element id="file-copy" path="$PROJECT_DIR$/out/production/shixun/com/shixun/c18/FieldDemo.class" />
+      <element id="file-copy" path="$PROJECT_DIR$/out/production/shixun/com/shixun/c18/MethodDemo.class" />
+      <element id="file-copy" path="$PROJECT_DIR$/out/production/shixun/com/shixun/c18/RelfDemo.class" />
+      <element id="file-copy" path="$PROJECT_DIR$/out/production/shixun/com/shixun/c18/User.class" />
+    </root>
+  </artifact>
+</component>

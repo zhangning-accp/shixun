@@ -101,13 +101,13 @@ public class XmlPractice {
             Document doc = builder.parse("src/com/shixun/c22/phone.xml");
             //获取根节点
             Element root = doc.getDocumentElement();
-            root.setAttribute(name,value);//设置某个属性值。如果有属性则修改，没有则添加
+            /*root.setAttribute(name,value);//设置某个属性值。如果有属性则修改，没有则添加
             root.setTextContent(value);//设置内容
             root.removeAttribute(name);//删除某个属性
             root.removeChild(oldChild);//删除某个子节点
             root.replaceChild(newChild,oldChild);//替换节点
             root.insertBefore(newChild,oldChild);//添加到old节点之前
-            root.appendChild(newChild);//添加到最后一个位置
+            root.appendChild(newChild);//添加到最后一个位置*/
 
             System.out.println(root.getTagName());
             //遍历根节点下的所有子节点

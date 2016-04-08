@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+                   version="3.1">
+
+    <context-param>
+        <param-name>encoding</param-name>
+        <param-value>GBK</param-value>
+    </context-param>
+    <context-param>
+        <param-name>email1</param-name>
+        <param-value>zhanging.holley@gmail1.com</param-value>
+    </context-param>
+    <!---->
+
+    <servlet>
+        <servlet-name>FirstServlet</servlet-name>
+        <servlet-class>com.shixun.servlet.c1.FirstServlet</servlet-class>
+
+
+</servlet>
+    <servlet-mapping>
+        <servlet-name>FirstServlet</servlet-name>
+        <url-pattern>/home.html</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SecondServlet</servlet-name>
+        <servlet-class>com.shixun.servlet.c1.SecondServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SecondServlet</servlet-name>
+        <url-pattern>/1.jpg</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>myservlet</servlet-name>
+        <servlet-class>com.shixun.servlet.c2.MyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>myservlet</servlet-name>
+        <url-pattern>/my.do</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ServletDemo</servlet-name>
+        <servlet-class>com.shixun.servlet.c3.ServeltDemo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletDemo</servlet-name>
+        <url-pattern>/html/c3/demo.do</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ProcessUserNameServelt</servlet-name>
+        <servlet-class>com.shixun.servlet.c3.ProcessUserNameServelt</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ProcessUserNameServelt</servlet-name>
+        <url-pattern>/process/name.do</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>RegisterServlete</servlet-name>
+        <servlet-class>com.shixun.servlet.c4.RegisterServlete</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RegisterServlete</servlet-name>
+        <url-pattern>/c4/register.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SercherServlet</servlet-name>
+        <servlet-class>com.shixun.servlet.c4.SercherServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SercherServlet</servlet-name>
+        <url-pattern>/c4/seacher.do</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>Servlet1</servlet-name>
+        <servlet-class>com.shixun.servlet.c5.Servelt1</servlet-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>gbk</param-value>
+
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Servlet1</servlet-name>
+        <url-pattern>/c5/s1.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Servlet2</servlet-name>
+        <servlet-class>com.shixun.servlet.c5.Servlet2</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Servlet2</servlet-name>
+        <url-pattern>/c5/s2.do</url-pattern>
+    </servlet-mapping>
+
+    <!--chat room ui config-->
+    <servlet><!--message list ui-->
+        <servlet-name>MessageUI</servlet-name>
+        <servlet-class>com.shixun.servlet.chat.ui.MesageListUI</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MessageUI</servlet-name>
+        <url-pattern>/chat/ui/messages</url-pattern>
+    </servlet-mapping>
+
+    <servlet><!--send message ui-->
+        <servlet-name>InputUI</servlet-name>
+        <servlet-class>com.shixun.servlet.chat.ui.InputUI</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InputUI</servlet-name>
+        <url-pattern>/chat/ui/input</url-pattern>
+    </servlet-mapping>
+
+    <servlet><!--user list ui-->
+        <servlet-name>UserListUI</servlet-name>
+        <servlet-class>com.shixun.servlet.chat.ui.UserListUI</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserListUI</servlet-name>
+        <url-pattern>/chat/ui/users</url-pattern>
+    </servlet-mapping>
+    <!-- ui end -->
+
+    <!--chat biz config-->
+    <servlet><!--login-->
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.shixun.servlet.chat.biz.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/chat/biz/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet><!--login-->
+        <servlet-name>SendMessageServlet</servlet-name>
+        <servlet-class>com.shixun.servlet.chat.biz.SendMessageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SendMessageServlet</servlet-name>
+        <url-pattern>/chat/biz/send.do</url-pattern>
+    </servlet-mapping>
+
+    <!--biz end-->
+
+
+    <servlet><!--login-->
+        <servlet-name>CookieDemo</servlet-name>
+        <servlet-class>com.shixun.servlet.c6.CookieDemo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CookieDemo</servlet-name>
+        <url-pattern>/c6/cookie.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet><!--login-->
+    <servlet-name>SessionDemo</servlet-name>
+    <servlet-class>com.shixun.servlet.c6.SessionDemo</servlet-class>
+</servlet>
+    <servlet-mapping>
+        <servlet-name>SessionDemo</servlet-name>
+        <url-pattern>/c6/session.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet><!--login-->
+        <servlet-name>LoginServlet1</servlet-name>
+        <servlet-class>com.shixun.servlet.c6.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet1</servlet-name>
+        <url-pattern>/c6/login.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet><!--login-->
+        <servlet-name>ImageServlet1</servlet-name>
+        <servlet-class>com.shixun.servlet.vp.ImageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ImageServlet1</servlet-name>
+        <url-pattern>/vp/vp.jpg</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet><!--login-->
+        <servlet-name>LoginServletExt</servlet-name>
+        <servlet-class>com.shixun.servlet.chat.biz.ext.LoginServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LoginServletExt</servlet-name>
+        <url-pattern>/biz/ext/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>com.shixun.servlet.up.UploadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadServlet</servlet-name>
+        <url-pattern>/up</url-pattern>
+    </servlet-mapping>
+</web-app>
